@@ -18,7 +18,7 @@
         -doSaf 1 \
         -ref /home/barrientosm/scratch/GeCKO/Refs/speltoides_transcriptome_YANG_2023.fasta \
         -GL 1 \
-        -P 10 \
+        -nThreads 10 \
         -minMapQ 30 \
         -minQ 20 \
         -minInd 5
@@ -29,7 +29,7 @@
 #   -doSaf 1: Tells ANGSD to calculate the Site Frequency Spectrum likelihoods.
 #    -ref reference_genome.fa: The reference genome to align the reads.
 #    -GL 1: Uses the SAMtools genotype likelihood model (appropriate for diploid data).
-#    -P 10: Enables parallel processing using 10 threads.
+#    -nThreads 10: Enables parallel processing using 10 threads.
 #    -out output_saf: Output prefix for the SAF files.
 #    -minMapQ 30: Filters out reads with a mapping quality below 30.
 #    -minQ 20: Filters out bases with base quality below 20.
