@@ -16,7 +16,7 @@
 ./angsd -out /home/barrientosm/scratch/angsd_output/Yang_TrMo_saf \
         -bam /home/barrientosm/scratch/GeCKO/CONFIG/WORKFLOWS_OUTPUTS/READ_MAPPING/speltoides_transcriptome_YANG_2023/bams_list.txt  \
         -doSaf 1 \
-        -ref /home/barrientosm/scratch/GeCKO/Refs/speltoides_transcriptome_YANG_2023.fasta \
+        -anc /home/barrientosm/scratch/GeCKO/Refs/speltoides_transcriptome_YANG_2023.fasta \
         -GL 1 \
         -nThreads 10 \
         -minMapQ 30 \
@@ -27,7 +27,8 @@
 
 #   -bam bam.filelist: The list of BAM files for your individuals.
 #   -doSaf 1: Tells ANGSD to calculate the Site Frequency Spectrum likelihoods.
-#    -ref reference_genome.fa: The reference genome to align the reads.
+#    -anc reference_genome.fa: The reference genome to align the reads. 
+#If you do not have the ancestral state you can simply use the assembly you have mapped agains, but remember to add -fold 1 in the 'realSFS' and 'realSFS sf2theta' step. 
 #    -GL 1: Uses the SAMtools genotype likelihood model (appropriate for diploid data).
 #    -nThreads 10: Enables parallel processing using 10 threads.
 #    -out output_saf: Output prefix for the SAF files.
