@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --job-name=angsd_sfs
+#SBATCH --output=./log_%j_%x_out.txt
+#SBATCH --error=./log_%j_%x_err.txt
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=9G
+#SBATCH --time=20:00:00
+#SBATCH --partition=agap_normal
+
+
+##Step 1: Calculate Site Allele Frequency Likelihoods
+
+#Run ANGSD to calculate the allele frequency likelihoods from your BAM files, using the reference genome:
+
+./angsd -out /home/barrientosm/scratch/angsd_output/Yang_TrMo_saf \
+        -bam /home/barrientosm/scratch/GeCKO/CONFIG/WORKFLOWS_OUTPUTS/READ_MAPPING/speltoides_transcriptome_YANG_2023/bams_list.txt  \
+        -doSaf 1 \
+        -ref /home/barrientosm/scratch/GeCKO/Refs/speltoides_transcriptome_YANG_2023.fasta \
+        -GL 1 \
+        -P 10 \
+        -minMapQ 30 \
+        -minQ 20 \
+        -minInd 5
+
+#Explanation of Parameters:
+
+#   -bam bam.filelist: The list of BAM files for your individuals.
+#   -doSaf 1: Tells ANGSD to calculate the Site Frequency Spectrum likelihoods.
+#    -ref reference_genome.fa: The reference genome to align the reads.
+#    -GL 1: Uses the SAMtools genotype likelihood model (appropriate for diploid data).
+#    -P 10: Enables parallel processing using 10 threads.
+#    -out output_saf: Output prefix for the SAF files.
+#    -minMapQ 30: Filters out reads with a mapping quality below 30.
+#    -minQ 20: Filters out bases with base quality below 20.
+#    -minInd 5: Includes only sites covered by at least 5 out of your 7 individuals (ensures sufficient data for SFS estimation).
+
