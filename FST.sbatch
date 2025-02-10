@@ -7,7 +7,7 @@
 ../angsd -b list2 -anc hg19ancNoChr.fa -out pop2 -dosaf 1 -gl 1
 
 # Step 2: Calculate the 2D SFS prior using realSFS (between pop1 and pop2)
-../misc/realSFS pop1.saf.idx pop2.saf.idx > pop1.pop2.ml
+../misc/realSFS pop1.saf.idx pop2.saf.idx -fold 1 > pop1.pop2.ml
 
 # Step 3: Prepare the Fst analysis for easy window analysis, etc.
 ../misc/realSFS fst index pop1.saf.idx pop2.saf.idx -sfs pop1.pop2.ml -fstout here
