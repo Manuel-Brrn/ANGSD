@@ -49,3 +49,32 @@ Option Descriptions:
 # -setMinDepthInd 10	Minimum depth of coverage per individual required for a site to be considered (at least 10 reads per individual).
 # -P 4	Number of threads to use for parallel processing (4 threads in this case).
 # -out $output_dir/urartu	Prefix for the output files. All generated files will be saved with this prefix in the specified output directory.
+
+
+# File	Format	Purpose	Usage in Downstream Analysis
+####### saf.idx	Binary	Index of SAF file	Automatic indexing for SFS inference
+  #  Format: Binary index file.
+ #   Content: Index information for the Site Allele Frequency likelihoods (SAF) file.
+ #   Purpose: This file stores metadata such as the number of sites and population size, which is necessary to efficiently access the saf.gz file during downstream analyses (e.g., calculating the site frequency spectrum or performing neutrality tests).
+ #   Usage: It is automatically read by ANGSD during subsequent analyses.
+
+####### glf.gz	Binary	Genotype likelihoods	Population structure, admixture analysis
+#Content: Genotype likelihoods for each individual at each position.
+#Structure:
+#    Each line represents a genomic position.
+#    For each position, it contains the likelihoods of the three possible genotypes: AA, AB, and BB.
+ #   Likelihoods are stored in log-scaled probabilities.
+
+######## saf.gz	Binary	Site Allele Frequency likelihoods	SFS estimation, neutrality tests
+#Structure:
+# Each line corresponds to a site.
+ #  The likelihood in saf.gz represents the probability of having k minor alleles out of n chromosomes at a given site.
+ #   Used to estimate the Site Frequency Spectrum (SFS) or calculate diversity statistics.
+#Usage: Required input for downstream analyses like neutrality tests or demographic inference using tools like realSFS.
+
+##### saf.pos.gz	Binary	Genomic positions	Coordinate reference for saf.gz
+# Format: Binary compressed file.
+# Content: List of genomic positions corresponding to the sites in saf.gz.
+# Structure:
+ #   Each line contains a chromosome name and the position of the site.
+#Usage: This file helps match the likelihoods in saf.gz to their genomic coordinates.
