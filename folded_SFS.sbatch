@@ -24,3 +24,12 @@ output_dir=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_sof
 #   -nThreads 10: Enables parallel processing using 10 threads for faster computation.
 #   -fold 1: Calculates the folded SFS since no ancestral information is available.
 #   > output.sfs: Saves the calculated SFS to the specified output file.
+
+## output.thetas.gz:
+#    This file contains Watterson's theta and other population genetic statistics calculated by ANGSD.
+#    It stores the estimated nucleotide diversity (π), Watterson's theta (θW), and Tajima's D per site or per window.
+#    The file is compressed in gzip format.
+
+## output.thetas.idx:
+  #  This is the index file corresponding to speltoides.thetas.gz.
+ #   It allows random access to the compressed data, which is useful when analyzing large datasets or performing window-based analyses.
