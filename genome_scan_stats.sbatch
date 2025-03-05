@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=thetaStat_TajimaD
-#SBATCH --output=./log_%j_%x_out.txt
-#SBATCH --error=./log_%j_%x_err.txt
+#SBATCH --job-name=thetaStat_TajimaD_samtool_urartu_TrEx_bams_cleaned
+#SBATCH --output=/home/barrientosm/scratch/angsd/logs_jobs/log_%j_%x_out.txt
+#SBATCH --error=/home/barrientosm/scratch/angsd/logs_jobs/log_%j_%x_err.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=9G
@@ -11,8 +11,8 @@
 ## Step 4: Calculate Tajima's D and other statistics using thetaStat
 
 # Run the thetaStat do_stat command to calculate Tajima's D and other statistics
-./misc/thetaStat do_stat /home/barrientosm/scratch/angsd_output/Yang_TrMo_theta.thetas.idx \
-                        > /home/barrientosm/scratch/angsd_output/Yang_TrMo_tajimaD.txt
+#./misc/thetaStat do_stat /home/barrientosm/scratch/angsd_output/Yang_TrMo_theta.thetas.idx \
+#                        > /home/barrientosm/scratch/angsd_output/Yang_TrMo_tajimaD.txt
 
 # Explanation of Parameters:
 
@@ -25,8 +25,11 @@
 # By using the -win 50000 and -step 10000, we calculate Tajima's D over windows of 50,000 sites
 # with a 10,000-site step between windows. The output is stored in "theta.thetasWindow.gz".
 
-./misc/thetaStat do_stat /home/barrientosm/scratch/angsd_output/Yang_TrMo_saf.thetas.idx \
-    -win 50000 -step 10000 -outnames /home/barrientosm/scratch/angsd_output/Yang_TrMo.theta.thetasWindow.gz
+thetas_idx=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_soft_clipped_reads_TrEx/urartu.thetas.idx
+output_dir=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_soft_clipped_reads_TrEx
+
+./misc/thetaStat do_stat $thetas_idx \
+    -outnames $output_dir/urartu
 
 # Explanation of Parameters:
 
