@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=realSFS_folded
-#SBATCH --output=./log_%j_%x_out.txt
-#SBATCH --error=./log_%j_%x_err.txt
+#SBATCH --job-name=realSFS_folded_urartu_TrEx_Samtool_no_soft_clipped_reads
+#SBATCH --output=/home/barrientosm/scratch/angsd/logs_jobs/log_%j_%x_out.txt
+#SBATCH --error=/home/barrientosm/scratch/angsd/logs_jobs/log_%j_%x_err.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=9G
@@ -10,15 +10,17 @@
 
 ## Step 2: Calculate the Folded Site Frequency Spectrum (SFS)
 
+saf_idx_path=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_soft_clipped_reads_TrEx
+output_dir=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_soft_clipped_reads_TrEx
 # Use the realSFS program to calculate the folded SFS
-./misc/realSFS /home/barrientosm/scratch/angsd_output/Yang_TrMo_saf.saf.idx \
-               -nThreads 10 \
+./misc/realSFS $saf_idx_path/urartu.saf.idx \
+               -P 10 \
                -fold 1 \
-               > /home/barrientosm/scratch/angsd_output/Yang_TrMo.sfs
+               > $output_dir/urartu_TrMo_folded.sfs
 
 # Explanation of Parameters:
 
 #   -saf.idx: Input file generated from Step 1 containing the site frequency likelihoods.
 #   -nThreads 10: Enables parallel processing using 10 threads for faster computation.
-#   -fold 1: Calculates the folded SFS since no ancestral information is available. 
+#   -fold 1: Calculates the folded SFS since no ancestral information is available.
 #   > output.sfs: Saves the calculated SFS to the specified output file.
