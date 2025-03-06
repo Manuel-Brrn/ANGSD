@@ -1,5 +1,45 @@
 # ANGSD
 
+This repository contains scripts and documentation for analyzing genomic data using ANGSD (Analysis of Next Generation Sequencing Data). 
+Below is an overview of the key outputs and scripts available in this repository.
+The scripts  processes genotype likelihoods, SAF, SFS, and thetas, calculate Tajima's D, compute MAF and count SNPs.
+
+## Scripts Overview
+
+The following scripts are available for various analyses:
+
+- **`genotype_likelihood_gatk_MAF.sbatch`**  
+  - Computes genotype likelihoods and Minor Allele Frequencies (MAF) using GATK.
+
+- **`genotype_likelihood_gatk_saf.sbatch`**  
+  - Computes genotype likelihoods and generates SAF (Sample Allele Frequency) files using GATK.
+
+- **`genotype_likelihood_samtool_MAF.sbatch`**  
+  - Computes genotype likelihoods and MAF using SAMtools.
+
+- **`genotype_likelihood_samtool_saf.sbatch`**  
+  - Computes genotype likelihoods and generates SAF files using SAMtools.
+
+- **`genotype_likelihood_syk_MAF.sbatch`**  
+  - Computes genotype likelihoods and MAF using Syk.
+- **`genotype_likelihood_syk_saf.sbatch`**  
+  - Computes genotype likelihoods and generates SAF files using Syk.
+
+- **`calculate_thetas.sbatch`**  
+  - Computes theta estimates (population genetic diversity statistics) from ANGSD output.
+
+- **`coverage_angsd.sbatch`**  
+  - Estimates coverage statistics using ANGSD.
+
+- **`folded_SFS.sbatch`**  
+  - Generates folded Site Frequency Spectrum (SFS) from ANGSD output.
+
+- **`genome_scan_stats.sbatch`**  
+  - Performs genome-wide scans for statistical analyses.
+
+- **`snp_counts_per_contigs.sh`**  
+  - Calculates number of SNPs form the MAF data  
+
 ## Output for `-doSaf`
 
 ### Outputs
