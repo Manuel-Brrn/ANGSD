@@ -29,3 +29,9 @@ output_dir=/home/barrientosm/scratch/angsd_analysis/urartu/samtool_GL/saf_no_sof
 #   -nThreads 10: Use 10 threads for parallel computation.
 #   -outname: Prefix for the output files. This will generate "out.thetas.gz" and "out.thetas.idx".
 
+## output thetas
+
+##Theta Files:
+  ##  PREFIX.thetas.idx: Stores chromosome name, number of sites, number of chromosomes, and offsets to access theta estimates in the main file.
+  ## PREFIX.thetas.gz: Contains per-site theta estimates (population genetic diversity statistics) along with chromosome name, number of sites, and number of chromosomes.
+
