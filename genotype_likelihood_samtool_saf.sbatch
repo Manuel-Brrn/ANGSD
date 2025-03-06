@@ -51,13 +51,6 @@ Option Descriptions:
 # -out $output_dir/urartu	Prefix for the output files. All generated files will be saved with this prefix in the specified output directory.
 
 
-# File	Format	Purpose	Usage in Downstream Analysis
-####### saf.idx	Binary	Index of SAF file	Automatic indexing for SFS inference
-  #  Format: Binary index file.
- #   Content: Index information for the Site Allele Frequency likelihoods (SAF) file.
- #   Purpose: This file stores metadata such as the number of sites and population size, which is necessary to efficiently access the saf.gz file during downstream analyses (e.g., calculating the site frequency spectrum or performing neutrality tests).
- #   Usage: It is automatically read by ANGSD during subsequent analyses.
-
 ####### glf.gz	Binary	Genotype likelihoods	Population structure, admixture analysis
 #Content: Genotype likelihoods for each individual at each position.
 #Structure:
@@ -65,16 +58,18 @@ Option Descriptions:
 #    For each position, it contains the likelihoods of the three possible genotypes: AA, AB, and BB.
  #   Likelihoods are stored in log-scaled probabilities.
 
-######## saf.gz	Binary	Site Allele Frequency likelihoods	SFS estimation, neutrality tests
-#Structure:
-# Each line corresponds to a site.
- #  The likelihood in saf.gz represents the probability of having k minor alleles out of n chromosomes at a given site.
- #   Used to estimate the Site Frequency Spectrum (SFS) or calculate diversity statistics.
-#Usage: Required input for downstream analyses like neutrality tests or demographic inference using tools like realSFS.
+#PREFIX.saf.gz:
+ #   PREFIX.saf.gz: Contains allele frequency likelihoods for each site as floating-point numbers, used to estimate site frequency spectra.
+  #  This file contains raw data representing allele frequency likelihoods.
+  #  It is compressed using bgzip (a common compression format in bioinformatics).
 
-##### saf.pos.gz	Binary	Genomic positions	Coordinate reference for saf.gz
-# Format: Binary compressed file.
-# Content: List of genomic positions corresponding to the sites in saf.gz.
-# Structure:
- #   Each line contains a chromosome name and the position of the site.
-#Usage: This file helps match the likelihoods in saf.gz to their genomic coordinates.
+#PREFIX.saf.pos.gz:
+   # PREFIX.saf.pos.gz: Stores the genomic positions corresponding to the likelihoods, allowing mapping between data and genome coordinates.
+  #  This file contains genomic positions where the likelihoods are computed.
+  #  It is also compressed with bgzip.
+
+#PREFIX.saf.idx:
+    #PREFIX.saf.idx: Contains metadata and index information, including the number of categories (allele frequency bins) and offsets to navigate the compressed data efficiently.
+  #  This file is uncompressed and contains indexing information to help read the compressed files efficiently.
+   # It starts with a size_t value, which tells you how many categories (allele frequency bins) are present.
+   # After that, it contains blocks of data that describe where information is located inside the compressed files.
